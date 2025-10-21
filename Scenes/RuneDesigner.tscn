@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://y63cqb3nrmms"]
+
+[ext_resource type="Texture2D" uid="uid://b03yjvvqf471g" path="res://Assets/portal_circle.png" id="1_4alg4"]
+[ext_resource type="Script" uid="uid://b5c068jnidj0h" path="res://Scripts/fighting_scene.gd" id="1_4hn5f"]
+[ext_resource type="Script" uid="uid://040gn04ccpr2" path="res://Scripts/circle.gd" id="2_tx861"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hn5f"]
+radius = 968.0186
+
+[node name="attack circle" type="Node2D"]
+script = ExtResource("1_4hn5f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.3)
+
+[node name="circle" type="Area2D" parent="."]
+script = ExtResource("2_tx861")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="circle"]
+shape = SubResource("CircleShape2D_4hn5f")
+
+[node name="AttackRing" type="Sprite2D" parent="circle"]
+texture = ExtResource("1_4alg4")
+
+[connection signal="mouse_entered" from="circle" to="circle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="circle" to="circle" method="_on_mouse_exited"]
