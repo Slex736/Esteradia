@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgroj3xdch612"]
+
+[ext_resource type="Texture2D" uid="uid://chpw7isvoicor" path="res://Assets/player.png" id="1_8pvmw"]
+[ext_resource type="Script" uid="uid://cbj3kwv17lboq" path="res://Scripts/player.gd" id="1_vnucn"]
+[ext_resource type="Texture2D" uid="uid://d272q5rmsvp65" path="res://Assets/Tileset.png" id="2_vnucn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3mwy"]
+atlas = ExtResource("1_8pvmw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4g5cr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3mwy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckhy6"]
+size = Vector2(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dun2r"]
+texture = ExtResource("2_vnucn")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_r3lo5"]
+sources/0 = SubResource("TileSetAtlasSource_dun2r")
+
+[node name="root" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(-8, -8)
+collision_layer = 2
+script = ExtResource("1_vnucn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_4g5cr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_ckhy6")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 3)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_r3lo5")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 1, 65534, 65536, 1, -65538, 65536, 1, -131072, 65536, 1, 196606, 65536, 0, 131072, 65536, 0, 131074, 65536, 0, 65538, 65536, 0, 2, 65536, 0, -65534, 65536, 0, -131070, 65536, 0, -196606, 65536, 0, -262142, 65536, 0, -262143, 65536, 0, -262144, 65536, 0, -196609, 65536, 0, -196610, 65536, 0, -196611, 65536, 0, -196612, 65536, 0, -131076, 65536, 0, -65540, 65536, 0, -4, 65536, 0, 65532, 65536, 0, 131068, 65536, 0, 196604, 65536, 0, 262148, 0, 1, 131076, 0, 1, 65540, 0, 1, 4, 0, 1, -65532, 0, 1, -131068, 0, 1, -196604, 0, 1, -262140, 0, 1, -327676, 0, 1, -393212, 0, 1, -393213, 0, 1, -393214, 0, 1, -393216, 0, 1, -327682, 0, 1, -327684, 0, 1, -327686, 0, 1, -196614, 0, 1, -65542, 0, 1, 65530, 0, 1, 196602, 0, 1, 327674, 0, 1, 327676, 0, 1, 327678, 0, 1, 262144, 0, 1, 262146, 0, 1)

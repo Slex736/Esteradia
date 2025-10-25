@@ -9,7 +9,7 @@ var files_runes = ["res://Rune Paths/Rune Of Flame(fireball).txt", "res://Rune P
 	"res://Rune Paths/Rune Of stone(placebrickcanbemovedwithtk).txt", "res://Rune Paths/Rune Of Weave(slingortrapping).txt"	
 ]
 
-
+var root = preload("res://Scenes/root.tscn")
 
 func _process(_delta: float) -> void:
 	# inherits from circle
@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 	if play_spell:
 		var rune = recognise_spell()
 		print(rune_int(rune))
+		get_tree().change_scene_to_packed(root)
 		
 
 func make_particle():
